@@ -17,14 +17,14 @@ class AuthenticatedSessionController extends Controller
         return view( 'auth.login' );
     }
 
-    public function store(LoginRequest $request): RedirectResponse
-    {
-        $request->authenticate();
+        public function store(LoginRequest $request): RedirectResponse
+        {
+            $request->authenticate();
 
-        $request->session()->regenerate();
+            $request->session()->regenerate();
 
-        return redirect('/');
-    }
+            return redirect()->intended(RouteServiceProvider::HOME);
+        }
 
     public function destroy(Request $request): RedirectResponse
     {
